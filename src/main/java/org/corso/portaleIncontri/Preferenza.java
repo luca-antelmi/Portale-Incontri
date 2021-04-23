@@ -1,26 +1,47 @@
 package org.corso.portaleIncontri;
 
-import java.util.ArrayList;
-import java.util.*;
-
 public class Preferenza {
 
-    private List<String> likeEta;
+    private int likeEtaMin;
+    private int likeEtaMax;
     private String likeGenere;
     private String likeColoreOcchi;
-    private List<String> likeAltezza;
+    private int likeAltezzaMin;
+    private int likeAltezzaMax;
 
-    public Preferenza(String etaMin, String etaMax, String genere, String coloreOcchi, String altezzaMin,
-            String altezzaMax) {
-        this.likeEta = new ArrayList<>();
-        this.likeEta.add(etaMin);
-        this.likeEta.add(etaMax);
+    public Preferenza(int etaMin, int etaMax, String genere, String coloreOcchi, int altezzaMin,
+            int altezzaMax) {
+        this.likeEtaMin = etaMin;
+        this.likeEtaMax = etaMax;
         this.likeGenere = genere;
         this.likeColoreOcchi = coloreOcchi;
-        this.likeAltezza = new ArrayList<>();
-        this.likeAltezza.add(altezzaMin);
-        this.likeAltezza.add(altezzaMax);
+        this.likeAltezzaMin = altezzaMin;
+        this.likeAltezzaMax = altezzaMax;
 
+    }
+
+    public int getLikeEtaMin() {
+        return likeEtaMin;
+    }
+
+    public int getLikeEtaMax() {
+        return likeEtaMax;
+    }
+
+    public int getLikeAltezzaMin() {
+        return likeAltezzaMin;
+    }
+
+    public int getLikeAltezzaMax() {
+        return likeAltezzaMax;
+    }
+
+    public String getLikeGenere() {
+        return likeGenere;
+    }
+
+    public String getLikeColoreOcchi() {
+        return likeColoreOcchi;
     }
 
 }

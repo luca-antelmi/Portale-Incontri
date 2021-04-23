@@ -1,5 +1,6 @@
 package org.corso.portaleIncontri;
 
+import java.util.*;
 import org.corso.portaleIncontri.exceptions.ErroreUtenteGiaPresenteException;
 
 public class GestoreRegistrazione {
@@ -8,17 +9,19 @@ public class GestoreRegistrazione {
 
     }
 
-    public void registra(Database database, String userName, String nome, String cognome, String eta, String genere,
-            String coloreOcchi, String altezza, String likeEtaMin, String likeEtaMax, String likeGenere,
-            String likeColoreOcchi, String likeAltezzaMin, String likeAltezzaMax)
-            throws ErroreUtenteGiaPresenteException {
-
-        Utente utente = new Utente(userName, nome, cognome, eta, genere, coloreOcchi, altezza);
-        Preferenza preferenza = new Preferenza(likeEtaMin, likeEtaMax, likeGenere, likeColoreOcchi, likeAltezzaMin,
-                likeAltezzaMax);
-        if (database.containsUser(utente))
+    public void registra(Map<String, Utente> utenti, String userName, String nome, String cognome, int eta,
+            String genere, String coloreOcchi, int altezza) throws ErroreUtenteGiaPresenteException {
+        if (utenti.containsKey(userName))
             throw new ErroreUtenteGiaPresenteException();
-        database.persist(utente, preferenza);
+        Utente utente = new Utente(userName, nome, cognome, eta, genere, coloreOcchi, altezza);
+        utenti.put(userName, utente);
 
     }
+
+    public void inserisciPreferenza(Utente utente, int etaMin, int etaMax, String genere, String coloreOcchi,
+            int altezzaMin, int altezzaMax) {
+        Preferenza preferenza = new Preferenza(etaMin, etaMax, genere, coloreOcchi, altezzaMin, altezzaMax);
+        utente.setPreferenza(preferenza);
+    }
+
 }

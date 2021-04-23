@@ -5,13 +5,14 @@ public class Utente {
     private String userName;
     private String nome;
     private String cognome;
-    private String eta;
+    private int eta;
     private String genere;
     private String coloreOcchi;
-    private String altezza;
+    private int altezza;
+    private Preferenza preferenza;
 
-    public Utente(String userName, String nome, String cognome, String eta, String genere, String coloreOcchi,
-            String altezza) {
+    public Utente(String userName, String nome, String cognome, int eta, String genere, String coloreOcchi,
+            int altezza) {
         this.userName = userName;
         this.nome = nome;
         this.cognome = cognome;
@@ -48,6 +49,38 @@ public class Utente {
 
     public String getUserName() {
         return userName;
+    }
+
+    public Preferenza getPreferenza() {
+        return preferenza;
+    }
+
+    public void setPreferenza(Preferenza preferenza) {
+        this.preferenza = preferenza;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public int getEta() {
+        return eta;
+    }
+
+    public String getGenere() {
+        return genere;
+    }
+
+    public String getColoreOcchi() {
+        return coloreOcchi;
+    }
+
+    public int getAltezza() {
+        return altezza;
     }
 
 }
