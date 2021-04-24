@@ -18,23 +18,35 @@ public class PortaleIncontri {
         this.gestoreMatching = new GestoreMatching();
     }
 
-    public void registrazioneUtente(String userName, String nome, String cognome, int eta, String genere,
-            String coloreOcchi, int altezza) throws ErroreRegistrazioneException {
-        if (userName == null | nome == null | cognome == null | eta == 0 | genere == null | coloreOcchi == null
-                | altezza == 0)
+    public void registrazioneUtente(String userName, String nome, String cognome, Integer eta, String genere,
+            String coloreOcchi, Integer altezza) throws ErroreRegistrazioneException {
+        if (userName == null | nome == null | cognome == null | eta == null | genere == null | coloreOcchi == null
+                | altezza == null)
             throw new ErroreRegistrazioneException();
+        if (eta < 0 | altezza < 0)
+            throw new ErroreRegistrazioneException();
+
         try {
             gestoreRegistrazione.registra(utenti, userName, nome, cognome, eta, genere, coloreOcchi, altezza);
-        } catch (ErroreUtenteGiaPresenteException e) {
+        } catch (ErroreUtenteGiaPresenteException | ErroreParametriInIngressoException e) {
             e.printStackTrace();
         }
     }
 
-    public void nuovaPreferenza(Utente utente, int etaMin, int etaMax, String genere, String coloreOcchi,
-            int altezzaMin, int altezzaMax) throws ErroreUtenteInestenteException {
+    public void nuovaPreferenza(Utente utente, Integer etaMin, Integer etaMax, String genere, String coloreOcchi,
+            Integer altezzaMin, Integer altezzaMax)
+            throws ErroreUtenteInestenteException, ErroreParametriInIngressoException {
+        if (utente == null | etaMin == null | etaMax == null | genere == null | coloreOcchi == null | altezzaMin == null
+                | altezzaMax == null)
+            throw new ErroreParametriInIngressoException();
         if (!utenti.containsKey(utente.getUserName()))
             throw new ErroreUtenteInestenteException();
-        gestoreRegistrazione.inserisciPreferenza(utente, etaMin, etaMax, genere, coloreOcchi, altezzaMin, altezzaMax);
+        try {
+            gestoreRegistrazione.inserisciNuovaPreferenza(utente, etaMin, etaMax, genere, coloreOcchi, altezzaMin,
+                    altezzaMax);
+        } catch (ErroreParametriInIngressoException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Utente> doMatch(Utente utente) throws ErroreUtenteInestenteException {

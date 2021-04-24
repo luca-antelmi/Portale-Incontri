@@ -5,14 +5,14 @@ public class Utente {
     private String userName;
     private String nome;
     private String cognome;
-    private int eta;
+    private Integer eta;
     private String genere;
     private String coloreOcchi;
-    private int altezza;
+    private Integer altezza;
     private Preferenza preferenza;
 
-    public Utente(String userName, String nome, String cognome, int eta, String genere, String coloreOcchi,
-            int altezza) {
+    public Utente(String userName, String nome, String cognome, Integer eta, String genere, String coloreOcchi,
+            Integer altezza) {
         this.userName = userName;
         this.nome = nome;
         this.cognome = cognome;
@@ -67,7 +67,7 @@ public class Utente {
         return cognome;
     }
 
-    public int getEta() {
+    public Integer getEta() {
         return eta;
     }
 
@@ -79,7 +79,7 @@ public class Utente {
         return coloreOcchi;
     }
 
-    public int getAltezza() {
+    public Integer getAltezza() {
         return altezza;
     }
 

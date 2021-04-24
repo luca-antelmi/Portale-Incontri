@@ -2,15 +2,15 @@ package org.corso.portaleIncontri;
 
 public class Preferenza {
 
-    private int likeEtaMin;
-    private int likeEtaMax;
+    private Integer likeEtaMin;
+    private Integer likeEtaMax;
     private String likeGenere;
     private String likeColoreOcchi;
-    private int likeAltezzaMin;
-    private int likeAltezzaMax;
+    private Integer likeAltezzaMin;
+    private Integer likeAltezzaMax;
 
-    public Preferenza(int etaMin, int etaMax, String genere, String coloreOcchi, int altezzaMin,
-            int altezzaMax) {
+    public Preferenza(Integer etaMin, Integer etaMax, String genere, String coloreOcchi, Integer altezzaMin,
+            Integer altezzaMax) {
         this.likeEtaMin = etaMin;
         this.likeEtaMax = etaMax;
         this.likeGenere = genere;
@@ -20,19 +20,19 @@ public class Preferenza {
 
     }
 
-    public int getLikeEtaMin() {
+    public Integer getLikeEtaMin() {
         return likeEtaMin;
     }
 
-    public int getLikeEtaMax() {
+    public Integer getLikeEtaMax() {
         return likeEtaMax;
     }
 
-    public int getLikeAltezzaMin() {
+    public Integer getLikeAltezzaMin() {
         return likeAltezzaMin;
     }
 
-    public int getLikeAltezzaMax() {
+    public Integer getLikeAltezzaMax() {
         return likeAltezzaMax;
     }
 

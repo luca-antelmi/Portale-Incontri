@@ -1,6 +1,7 @@
 package org.corso.portaleIncontri;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,8 @@ public class GestoreMatchingTest {
     private Utente minni;
     private Utente pippo;
     private Preferenza preferenza;
+    private Preferenza preferenzaConNull;
+    private Preferenza preferenzaDefault;
     private Map<String, Utente> mappaDiTest;
     private GestoreMatching gestoreMatchingTest;
 
@@ -29,7 +32,11 @@ public class GestoreMatchingTest {
         minni = new Utente("minni", "minnie", "mouse", 19, "F", "verde", 151);
         pippo = new Utente("pippo", "goofy", "goofy", 36, "M", "nero", 138);
         preferenza = new Preferenza(20, 40, "F", "nero", 120, 160);
+        preferenzaConNull = new Preferenza(10, null, "M", "blu", null, 0);
+        preferenzaDefault = new Preferenza(0, 999, "all", "all", 0, 9999);
         paperino.setPreferenza(preferenza);
+        topolino.setPreferenza(preferenzaConNull);
+        minni.setPreferenza(preferenzaDefault);
         mappaDiTest = new HashMap<>();
         mappaDiTest.put("paperino", paperino);
         mappaDiTest.put("paperina", paperina);
@@ -44,6 +51,19 @@ public class GestoreMatchingTest {
         List<Utente> lista = gestoreMatchingTest.match(paperino, mappaDiTest);
         // secondo i parametri di match vengono selezionati solo paperina e pippo
         assertEquals(2, lista.size());
+        assertTrue(lista.contains(paperina));
+        assertTrue(lista.contains(pippo));
+
+    }
+
+    @Test
+    public void verifcaMatchingCorrettoConPreferenzaDefault() throws ErroreParametriInIngressoException{
+        List<Utente> lista = gestoreMatchingTest.match(minni, mappaDiTest);
+        assertEquals(4, lista.size());
+        assertTrue(lista.contains(paperina));
+        assertTrue(lista.contains(pippo));
+        assertTrue(lista.contains(topolino));
+        assertTrue(lista.contains(paperino));
 
     }
 
@@ -51,6 +71,11 @@ public class GestoreMatchingTest {
     public void verificaErroreSeUtenteNull() throws ErroreParametriInIngressoException {
         gestoreMatchingTest.match(null, mappaDiTest);
 
+    }
+
+    @Test(expected = ErroreParametriInIngressoException.class)
+    public void verificaErroreSePreferenzaHaParametriNull() throws ErroreParametriInIngressoException {
+        gestoreMatchingTest.match(topolino, mappaDiTest);
     }
 
     @Test(expected = ErroreParametriInIngressoException.class)
