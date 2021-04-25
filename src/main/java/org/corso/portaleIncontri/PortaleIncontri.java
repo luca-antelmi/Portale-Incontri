@@ -39,6 +39,8 @@ public class PortaleIncontri {
         if (utente == null | etaMin == null | etaMax == null | genere == null | coloreOcchi == null | altezzaMin == null
                 | altezzaMax == null)
             throw new ErroreParametriInIngressoException();
+        if (etaMin < 0 | etaMax < 0 | altezzaMin < 0 | altezzaMax < 0)
+            throw new ErroreParametriInIngressoException();
         if (!utenti.containsKey(utente.getUserName()))
             throw new ErroreUtenteInestenteException();
         try {
